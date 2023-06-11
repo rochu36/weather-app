@@ -1,0 +1,59 @@
+a {
+  color: black;
+  text-decoration: none;
+}
+
+.app-content {
+  margin: 30px auto;
+  padding: 15px 15px 5px 15px;
+  max-width: 800px;
+}
+.city {
+  font-size: 48px;
+  line-height: 60px;
+  padding-left: 10px;
+  text-transform: capitalize;
+}
+.todays-forecast {
+  margin: 5px 0;
+}
+.todays-icon {
+  font-size: 64px;
+  text-align: center;
+}
+.today {
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+.current-weather {
+  margin-bottom: 12px;
+}
+.current-temperature {
+  font-size: 40px;
+}
+.todays-high-low {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+.todays-precipitation,
+.todays-humidity {
+  margin-bottom: 6px;
+}
+.forecast-title {
+  font-size: 24px;
+  padding: 8px;
+}
+.day-of-week,
+.forecast-high-low,
+.forecast-icon,
+.forecast-pop {
+  text-align: center;
+}
+.forecast-icon {
+  font-size: 30px;
+}
+.update {
+  color: grey;
+  font-size: 12px;
+  line-height: 30px;
+}
