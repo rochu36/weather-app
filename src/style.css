@@ -16,10 +16,6 @@ a {
 .todays-forecast {
   margin: 5px 0;
 }
-.todays-icon {
-  font-size: 64px;
-  text-align: center;
-}
 .today {
   font-size: 18px;
   margin-bottom: 6px;
@@ -69,4 +65,7 @@ a {
 #change-to-fahrenheit,
 #change-to-celsius {
   color: black;
+}
+#todays-icon {
+  padding-left: 15px;
 }

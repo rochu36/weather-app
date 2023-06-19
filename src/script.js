@@ -14,6 +14,9 @@ function displaySearchedWeather(response) {
   let windSpeed = Math.round(response.data.wind.speed);
   let currentWindSpeed = document.querySelector("#wind");
   currentWindSpeed.innerHTML = windSpeed;
+  let currentIcon = document.querySelector("#todays-icon");
+  currentIcon.setAttribute("src", response.data.condition.icon_url);
+  currentIcon.setAttribute("alt", response.data.condition.description);
 }
 
 function displaySearchedCity(searchedCity) {
