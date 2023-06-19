@@ -27,6 +27,9 @@ a {
 .current-weather {
   margin-bottom: 12px;
 }
+.current-weather::first-letter {
+  text-transform: capitalize;
+}
 .current-temperature {
   font-size: 40px;
 }

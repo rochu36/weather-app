@@ -10,13 +10,17 @@ function displaySearchedWeather(response) {
   displayedCity.innerHTML = location;
 }
 
-function displaySearchedCity(event) {
-  event.preventDefault();
-  let searchedCityInput = document.querySelector("#city-search-input");
-  let searchedCity = searchedCityInput.value.trim().toLowerCase();
+function displaySearchedCity(searchedCity) {
   let apiKey = "f0f46b64716e36bf140a4af097o93t04";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${searchedCity}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displaySearchedWeather);
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let searchedCityInput = document.querySelector("#city-search-input");
+  let searchedCity = searchedCityInput.value.trim().toLowerCase();
+  displaySearchedCity(searchedCity);
 }
 
 function displayCurrentTime() {
@@ -87,10 +91,60 @@ function searchCurrentLocation() {
   navigator.geolocation.getCurrentPosition(findPosition);
 }
 
+function calculateFahrenheit(temperatureValue) {
+  temperatureValue.innerHTML = Math.round(
+    temperatureValue.textContent * 1.8 + 32
+  );
+}
+
+function updateFahrenheitLabel(temperatureUnit) {
+  temperatureUnit.innerHTML = "°F";
+}
+
+function convertToFahrenheit(event) {
+  event.preventDefault();
+  let temperatureUnit = document.querySelector(".temperature-unit");
+  if (temperatureUnit.textContent === "°C") {
+    let temperatureValues = document.querySelectorAll(".temperature-value");
+    temperatureValues.forEach(calculateFahrenheit);
+    let temperatureUnits = document.querySelectorAll(".temperature-unit");
+    temperatureUnits.forEach(updateFahrenheitLabel);
+  }
+}
+
+function calculateCelsius(temperatureValue) {
+  temperatureValue.innerHTML = Math.round(
+    (temperatureValue.textContent - 32) / 1.8
+  );
+}
+
+function updateCelsiusLabel(temperatureUnit) {
+  temperatureUnit.innerHTML = "°C";
+}
+
+function convertToCelsius(event) {
+  event.preventDefault();
+  let temperatureUnit = document.querySelector(".temperature-unit");
+  if (temperatureUnit.textContent === "°F") {
+    let temperatureValues = document.querySelectorAll(".temperature-value");
+    temperatureValues.forEach(calculateCelsius);
+    let temperatureUnits = document.querySelectorAll(".temperature-unit");
+    temperatureUnits.forEach(updateCelsiusLabel);
+  }
+}
+
 let citySearchForm = document.querySelector("#city-search-form");
 citySearchForm.addEventListener("submit", displaySearchedCity);
 
 let currentButton = document.querySelector("#current-location");
 currentButton.addEventListener("click", searchCurrentLocation);
+
+let fahrenheitConversion = document.querySelector("#change-to-fahrenheit");
+fahrenheitConversion.addEventListener("click", convertToFahrenheit);
+
+let celsiusConversion = document.querySelector("#change-to-celsius");
+celsiusConversion.addEventListener("click", convertToCelsius);
+
+displaySearchedCity("Markham");
 
 displayCurrentTime();
