@@ -8,6 +8,12 @@ function displaySearchedWeather(response) {
   let location = response.data.city;
   let displayedCity = document.querySelector("#displayed-city");
   displayedCity.innerHTML = location;
+  let humidity = response.data.temperature.humidity;
+  let currentHumidity = document.querySelector("#humidity");
+  currentHumidity.innerHTML = humidity;
+  let windSpeed = Math.round(response.data.wind.speed);
+  let currentWindSpeed = document.querySelector("#wind");
+  currentWindSpeed.innerHTML = windSpeed;
 }
 
 function displaySearchedCity(searchedCity) {
