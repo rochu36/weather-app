@@ -152,31 +152,53 @@ function convertToCelsius(event) {
   }
 }
 
-function displayForecast() {
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  return days[day];
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector(".weather-forecast");
   let forecastHTML = `<div class="row row-cols-1 row-cols-md-5 g-2">`;
-
-  forecastHTML =
-    forecastHTML +
-    `<div class="col">
+  forecast.forEach(function (forecastDay, index) {
+    if (index > 0 && index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="col">
                 <div class="card">
                   <div class="card-body">
-                    <p class="day-of-week">Sunday</p>
-                    <p class="forecast-icon">
-                      <i class="fa-solid fa-cloud cloudy-icon"></i>
-                    </p>
+                    <p class="day-of-week">${formatDay(forecastDay.time)}</p>
+                      <img src="${forecastDay.condition.icon_url}" alt="${
+          forecastDay.condition.icon
+        }" class="forecast-icon" />
                     <p class="forecast-high-low">
-                      High <span class="temperature-value">16</span
-                      ><span class="temperature">°C</span>
+                      High <span class="temperature-value">${Math.round(
+                        forecastDay.temperature.maximum
+                      )}</span
+                      ><span class="temperature-unit">°C</span>
                       <br />
-                      Low <span class="temperature-value">7</span
+                      Low <span class="temperature-value">${Math.round(
+                        forecastDay.temperature.minimum
+                      )}</span
                       ><span class="temperature-unit">°C</span>
                     </p>
                   </div>
                 </div>
-              </div>
-            </div>`;
-
+              </div>`;
+    }
+  });
+  forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
 
