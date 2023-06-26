@@ -203,7 +203,7 @@ function displayForecast(response) {
 }
 
 let citySearchForm = document.querySelector("#city-search-form");
-citySearchForm.addEventListener("submit", displaySearchedCity);
+citySearchForm.addEventListener("submit", handleSubmit);
 
 let currentButton = document.querySelector("#current-location");
 currentButton.addEventListener("click", searchCurrentLocation);
