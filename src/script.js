@@ -1,3 +1,9 @@
+function getForecast(city) {
+  let apiKey = "f0f46b64716e36bf140a4af097o93t04";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
 function displaySearchedWeather(response) {
   let temperature = Math.round(response.data.temperature.current);
   let currentTemperature = document.querySelector("h2 .temperature-value");
@@ -17,6 +23,8 @@ function displaySearchedWeather(response) {
   let currentIcon = document.querySelector("#todays-icon");
   currentIcon.setAttribute("src", response.data.condition.icon_url);
   currentIcon.setAttribute("alt", response.data.condition.description);
+
+  getForecast(response.data.city);
 }
 
 function displaySearchedCity(searchedCity) {
@@ -86,6 +94,8 @@ function displayCurrentWeather(response) {
   let location = response.data.city;
   let displayedCity = document.querySelector("#displayed-city");
   displayedCity.innerHTML = location;
+
+  getForecast(response.data.city);
 }
 
 function findPosition(position) {
@@ -142,6 +152,34 @@ function convertToCelsius(event) {
   }
 }
 
+function displayForecast() {
+  let forecastElement = document.querySelector(".weather-forecast");
+  let forecastHTML = `<div class="row row-cols-1 row-cols-md-5 g-2">`;
+
+  forecastHTML =
+    forecastHTML +
+    `<div class="col">
+                <div class="card">
+                  <div class="card-body">
+                    <p class="day-of-week">Sunday</p>
+                    <p class="forecast-icon">
+                      <i class="fa-solid fa-cloud cloudy-icon"></i>
+                    </p>
+                    <p class="forecast-high-low">
+                      High <span class="temperature-value">16</span
+                      ><span class="temperature">°C</span>
+                      <br />
+                      Low <span class="temperature-value">7</span
+                      ><span class="temperature-unit">°C</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>`;
+
+  forecastElement.innerHTML = forecastHTML;
+}
+
 let citySearchForm = document.querySelector("#city-search-form");
 citySearchForm.addEventListener("submit", displaySearchedCity);
 
@@ -155,5 +193,4 @@ let celsiusConversion = document.querySelector("#change-to-celsius");
 celsiusConversion.addEventListener("click", convertToCelsius);
 
 displaySearchedCity("Markham");
-
 displayCurrentTime();
