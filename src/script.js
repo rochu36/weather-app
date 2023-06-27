@@ -128,6 +128,9 @@ function convertToFahrenheit(event) {
     temperatureValues.forEach(calculateFahrenheit);
     let temperatureUnits = document.querySelectorAll(".temperature-unit");
     temperatureUnits.forEach(updateFahrenheitLabel);
+
+    celsiusConversion.classList.remove("inactive");
+    fahrenheitConversion.classList.add("inactive");
   }
 }
 
@@ -149,6 +152,9 @@ function convertToCelsius(event) {
     temperatureValues.forEach(calculateCelsius);
     let temperatureUnits = document.querySelectorAll(".temperature-unit");
     temperatureUnits.forEach(updateCelsiusLabel);
+
+    celsiusConversion.classList.add("inactive");
+    fahrenheitConversion.classList.remove("inactive");
   }
 }
 
@@ -200,6 +206,12 @@ function displayForecast(response) {
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
+
+  let todaysHigh = document.querySelector("#todays-high");
+  todaysHigh.innerHTML = `${Math.round(forecast[0].temperature.maximum)}`;
+
+  let todaysLow = document.querySelector("#todays-low");
+  todaysLow.innerHTML = `${Math.round(forecast[0].temperature.minimum)}`;
 }
 
 let citySearchForm = document.querySelector("#city-search-form");

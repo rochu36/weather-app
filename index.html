@@ -59,15 +59,15 @@
               <p class="current-weather"></p>
               <h2 class="current-temperature">
                 <span class="temperature-value"></span
-                ><a href="#" id="change-to-celsius">°C</a> |
+                ><a href="#" id="change-to-celsius" class="inactive">°C</a> |
                 <a href="#" id="change-to-fahrenheit">°F</a>
               </h2>
             </div>
             <div class="col-4">
               <p class="todays-high-low">
-                High <span class="temperature-value">18</span
+                High <span class="temperature-value" id="todays-high"></span
                 ><span class="temperature-unit">°C</span> | Low
-                <span class="temperature-value">8</span
+                <span class="temperature-value" id="todays-low"></span
                 ><span class="temperature-unit">°C</span>
               </p>
               <p class="todays-humidity">
@@ -82,7 +82,10 @@
         </div>
       </div>
       <p class="code">
-        <a href="https://github.com/rochu36/weather-app" target="_blank"
+        <a
+          href="https://github.com/rochu36/weather-app"
+          target="_blank"
+          class="source-code"
           >Open-source code</a
         >
         by Rosa Chu

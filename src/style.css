@@ -1,5 +1,6 @@
 a {
   text-decoration: none;
+  color: rgba(0, 0, 0, 0.4);
 }
 .app-content {
   margin: 30px auto;
@@ -48,7 +49,10 @@ a {
   text-align: center;
 }
 .forecast-icon {
+  display: block;
   font-size: 30px;
+  margin: 0 auto;
+  padding: 0;
 }
 .update {
   color: grey;
@@ -62,10 +66,13 @@ a {
   max-width: 800px;
   padding-left: 5px;
 }
-#change-to-fahrenheit,
-#change-to-celsius {
-  color: black;
+.source-code {
+  color: rgb(13, 110, 253);
 }
 #todays-icon {
   padding-left: 15px;
+}
+.inactive {
+  color: black;
+  cursor: default;
 }
